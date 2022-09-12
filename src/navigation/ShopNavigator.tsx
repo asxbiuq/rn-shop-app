@@ -23,7 +23,7 @@ const screenOptionStyle = {
 
 const MainStackNavigator = () => {
   return (
-    <RootStack.Navigator initialRouteName="ProductsOverviewScreen" screenOptions={screenOptionStyle}>
+    <RootStack.Navigator  screenOptions={screenOptionStyle}>
       <RootStack.Screen name="ProductsOverviewScreen" component={ProductsOverviewScreen} />
     </RootStack.Navigator>
   )
