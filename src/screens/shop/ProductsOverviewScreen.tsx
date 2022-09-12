@@ -6,11 +6,11 @@ import { Text } from "react-native"
 
 export default () => {
   const products = useSelector(availableProducts)
-
+  console.log(products)
   return (
     <FlatList 
       data={products} 
-      renderItem={itemData => <Text>{itemData.item.title}</Text>}
+      renderItem={product => <Text>{product.item.title}</Text>}
       keyExtractor={item => item.id}
     />
   )

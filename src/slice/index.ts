@@ -2,18 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { PRODUCTS } from '../data/dummy-data'
 
-export interface CounterState {
+export interface State {
+  product : ProductState
+}
+
+export interface ProductState {
   availableProducts: Product[],
   userProducts : Product[]
 }
 
-const initialState: CounterState = {
+const initialState: ProductState = {
   availableProducts: PRODUCTS,
   userProducts: PRODUCTS.filter(prod => prod.ownerId === '1354214')
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const productSlice = createSlice({
+  name: 'product',
   initialState,
   reducers: {
     increment: (state) => {
@@ -32,9 +36,9 @@ export const counterSlice = createSlice({
   },
 })
 
-export const availableProducts = (state:CounterState) => state.availableProducts
+export const availableProducts = (state:State) => state.product.availableProducts
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount } = productSlice.actions
 
-export default counterSlice.reducer
+export default productSlice.reducer

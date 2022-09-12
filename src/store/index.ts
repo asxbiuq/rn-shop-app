@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import mealReducer from '../slice/index';
+import productReducer from '../slice/index';
 
 export default configureStore({
   reducer: {
-    availableProducts: mealReducer,
+    product: productReducer,
   },
 });
