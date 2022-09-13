@@ -1,16 +1,15 @@
-import { faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker';
 
 faker.setLocale('zh_CN');
 
-
-export const PRODUCTS : Product[]= [
+export const PRODUCTS: Product[] = [
   {
     id: '1354214',
     ownerId: faker.address.buildingNumber(),
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: Math.random()*1000,
+    price: Math.random() * 1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -18,7 +17,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: Math.random()*1000,
+    price: Math.random() * 1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -26,7 +25,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: Math.random()*1000,
+    price: Math.random() * 1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -34,7 +33,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: Math.random()*1000,
+    price: Math.random() * 1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -42,9 +41,9 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: Math.random()*1000,
+    price: Math.random() * 1000,
   },
-]
+];
 
 export const MEALS = [
   {
@@ -53,7 +52,7 @@ export const MEALS = [
     title: faker.word.adjective(),
     affordability: 'affordable',
     complexity: 'simple',
-    imageUrl:faker.image.food(),
+    imageUrl: faker.image.food(),
     duration: 10,
     ingredients: [
       '1 Slice White Bread',
@@ -77,7 +76,7 @@ export const MEALS = [
     title: faker.word.adjective(),
     affordability: 'affordable',
     complexity: 'simple',
-    imageUrl:faker.image.food(),
+    imageUrl: faker.image.food(),
     duration: 10,
     ingredients: [
       '1 Slice White Bread',
@@ -101,7 +100,7 @@ export const MEALS = [
     title: faker.word.adjective(),
     affordability: 'affordable',
     complexity: 'simple',
-    imageUrl:faker.image.food(),
+    imageUrl: faker.image.food(),
     duration: 10,
     ingredients: [
       '1 Slice White Bread',
@@ -125,7 +124,7 @@ export const MEALS = [
     title: faker.word.adjective(),
     affordability: 'affordable',
     complexity: 'simple',
-    imageUrl:faker.image.food(),
+    imageUrl: faker.image.food(),
     duration: 10,
     ingredients: [
       '1 Slice White Bread',
@@ -143,4 +142,4 @@ export const MEALS = [
     isVegetarian: true,
     isLactoseFree: false,
   },
-]
+];

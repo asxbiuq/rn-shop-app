@@ -1,7 +1,7 @@
 // import { ShopNavigatorParamList } from '../../types';
 import { createStackNavigator } from '@react-navigation/stack';
-import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen'
-import Colors from '../constants/Colors'
+import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen';
+import Colors from '../constants/Colors';
 
 type RootStackParamList = {
   // Home: undefined;
@@ -19,15 +19,18 @@ const screenOptionStyle = {
   headerTintColor: 'white',
   headerBackTitle: 'Back',
   headerShown: true,
-}
+};
 
 const MainStackNavigator = () => {
   return (
-    <RootStack.Navigator  screenOptions={screenOptionStyle}>
-      <RootStack.Screen name="ProductsOverviewScreen" component={ProductsOverviewScreen} />
+    <RootStack.Navigator screenOptions={screenOptionStyle}>
+      <RootStack.Screen
+        name="ProductsOverviewScreen"
+        component={ProductsOverviewScreen}
+      />
     </RootStack.Navigator>
-  )
-}
+  );
+};
 
 // const FavoriteStackNavigator = () => {
 //   return (
@@ -45,4 +48,4 @@ const MainStackNavigator = () => {
 //   )
 // }
 
-export { MainStackNavigator }
+export { MainStackNavigator };
