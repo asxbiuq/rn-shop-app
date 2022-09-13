@@ -10,7 +10,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: faker.address.buildingNumber(),
+    price: Math.random()*1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -18,7 +18,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: faker.address.buildingNumber(),
+    price: Math.random()*1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -26,7 +26,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: faker.address.buildingNumber(),
+    price: Math.random()*1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -34,7 +34,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: faker.address.buildingNumber(),
+    price: Math.random()*1000,
   },
   {
     id: faker.address.buildingNumber(),
@@ -42,7 +42,7 @@ export const PRODUCTS : Product[]= [
     title: faker.word.adjective(),
     imageUrl: faker.image.business(),
     description: faker.lorem.lines(),
-    price: faker.address.buildingNumber(),
+    price: Math.random()*1000,
   },
 ]
 
