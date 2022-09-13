@@ -1,6 +1,6 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker'
 
-faker.setLocale('zh_CN');
+faker.setLocale('zh_CN')
 
 export const PRODUCTS: Product[] = [
   {
@@ -43,7 +43,7 @@ export const PRODUCTS: Product[] = [
     description: faker.lorem.lines(),
     price: Math.random() * 1000,
   },
-];
+]
 
 export const MEALS = [
   {
@@ -142,4 +142,4 @@ export const MEALS = [
     isVegetarian: true,
     isLactoseFree: false,
   },
-];
+]

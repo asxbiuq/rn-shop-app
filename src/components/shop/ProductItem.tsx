@@ -1,14 +1,14 @@
-import React from 'react';
-import { View, Image, Text, Button, StyleSheet } from 'react-native';
-import Colors from '../../constants/Colors';
+import React from 'react'
+import { View, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import Colors from '../../constants/Colors'
 
 interface Props {
-  imageUrl: string;
-  title: string;
+  imageUrl: string
+  title: string
+  price: number
 
-  price: number;
-  onViewDetail: (event: any) => void;
-  onAddToCar: (event: any) => void;
+  onViewDetail: (event: any) => void
+  onAddToCar: (event: any) => void
 }
 
 export default ({
@@ -19,25 +19,27 @@ export default ({
   onAddToCar,
 }: Props) => {
   return (
-    <View style={styles.product}>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+    <TouchableOpacity onPress={onViewDetail}>
+      <View style={styles.product}>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: imageUrl }} style={styles.image} />
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.price}>${price.toFixed(2)}</Text>
+        </View>
+        <View style={styles.action}>
+          <Button
+            color={Colors.primary}
+            title="View Details"
+            onPress={onViewDetail}
+          />
+          <Button color={Colors.primary} title="To Cart" onPress={onAddToCar} />
+        </View>
       </View>
-      <View style={styles.details}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.price}>${price.toFixed()}</Text>
-      </View>
-      <View style={styles.action}>
-        <Button
-          color={Colors.primary}
-          title="View Details"
-          onPress={onViewDetail}
-        />
-        <Button color={Colors.primary} title="To Cart" onPress={onAddToCar} />
-      </View>
-    </View>
-  );
-};
+    </TouchableOpacity>
+  )
+}
 
 const styles = StyleSheet.create({
   product: {
@@ -84,4 +86,4 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     overflow: 'hidden',
   },
-});
+})

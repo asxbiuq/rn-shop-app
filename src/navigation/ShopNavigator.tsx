@@ -1,16 +1,21 @@
-// import { ShopNavigatorParamList } from '../../types';
-import { createStackNavigator } from '@react-navigation/stack';
-import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen';
-import Colors from '../constants/Colors';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack'
+import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen'
+import Colors from '../constants/Colors'
+import ProductDetailScreen from '../screens/shop/ProductDetailScreen'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { NavigatorScreenParams } from '@react-navigation/native'
 
-type RootStackParamList = {
-  // Home: undefined;
-  // Profile: { userId: string };
-  // Feed: { sort: 'latest' | 'top' } | undefined;
-  ProductsOverviewScreen: undefined;
-};
+export type RootStackParamList = {
+  ProductsOverviewScreen: undefined
+  ProductDetailScreen: { productId: string, productTitle: string }
+}
 
-const RootStack = createStackNavigator<RootStackParamList>();
+export type NavigationProp = NativeStackScreenProps<RootStackParamList>
+
+const RootStack = createStackNavigator<RootStackParamList>()
 
 const screenOptionStyle = {
   headerStyle: {
@@ -19,7 +24,7 @@ const screenOptionStyle = {
   headerTintColor: 'white',
   headerBackTitle: 'Back',
   headerShown: true,
-};
+}
 
 const MainStackNavigator = () => {
   return (
@@ -28,24 +33,9 @@ const MainStackNavigator = () => {
         name="ProductsOverviewScreen"
         component={ProductsOverviewScreen}
       />
+      <RootStack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
     </RootStack.Navigator>
-  );
-};
+  )
+}
 
-// const FavoriteStackNavigator = () => {
-//   return (
-//     <Stack.Navigator screenOptions={screenOptionStyle}>
-//       <Stack.Screen name='Favorites' component={FavoritesScreen} />
-//     </Stack.Navigator>
-//   )
-// }
-
-// const FilterStackNavigator = () => {
-//   return (
-//     <Stack.Navigator screenOptions={screenOptionStyle}>
-//       <Stack.Screen name='Filters' component={FiltersScreen} />
-//     </Stack.Navigator>
-//   )
-// }
-
-export { MainStackNavigator };
+export { MainStackNavigator }
