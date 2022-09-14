@@ -11,8 +11,8 @@ export interface CartState {
   totalAmount: number
 }
 
-const initialState  = {
-  items: CARTITEM,
+const initialState : CartState = {
+  items: [],
   totalAmount: 0,
 }
 
@@ -25,13 +25,13 @@ export const cartSlice = createSlice({
 
       const prodPrice = addedProduct.price
       const proTitle = addedProduct.title
-      let updatedOrNewCartItem
-      const { items, totalAmount } :{items:any,totalAmount:any} = current(state)
+      let updatedOrNewCartItem : CartItem
+      const { items, totalAmount } :{items:CartItem[],totalAmount:number} = current(state)
+ 
+      const addedItem = items.find((item:CartItem) => item.productTitle === addedProduct.title)
 
-      const addedItem = items.filter((item:any) => item.id === addedProduct.id)
 
-      
-      if (items) {
+      if (addedItem) {
         updatedOrNewCartItem = {
           quantity: addedItem.quantity + 1,
           productPrice: prodPrice,
@@ -43,17 +43,15 @@ export const cartSlice = createSlice({
           quantity: 1,
           productPrice: prodPrice,
           productTitle: proTitle,
-          sum: addedItem.sum + prodPrice,
-        }
-
-        return {
-          ...state,
-          items: { ...items, [addedProduct.id]: updatedOrNewCartItem },
-          totalAmount: totalAmount + prodPrice,
+          sum:  prodPrice,
         }
       }
 
-      // return { product: product}
+      return {
+        ...state,
+        items: [ ...items,  updatedOrNewCartItem ],
+        totalAmount: totalAmount + prodPrice,
+      }
     },
   },
 })
