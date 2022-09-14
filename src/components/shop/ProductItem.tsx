@@ -1,5 +1,12 @@
 import React from 'react'
-import { View, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Image,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native'
 import Colors from '../../constants/Colors'
 
 interface Props {
@@ -8,7 +15,7 @@ interface Props {
   price: number
 
   onViewDetail: (event: any) => void
-  onAddToCar: (event: any) => void
+  onAddToCart: (event: any) => void
 }
 
 export default ({
@@ -16,7 +23,7 @@ export default ({
   title,
   price,
   onViewDetail,
-  onAddToCar,
+  onAddToCart,
 }: Props) => {
   return (
     <TouchableOpacity onPress={onViewDetail}>
@@ -34,7 +41,7 @@ export default ({
             title="View Details"
             onPress={onViewDetail}
           />
-          <Button color={Colors.primary} title="To Cart" onPress={onAddToCar} />
+          <Button color={Colors.primary} title="To Cart" onPress={onAddToCart} />
         </View>
       </View>
     </TouchableOpacity>

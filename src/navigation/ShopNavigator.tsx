@@ -10,7 +10,7 @@ import { NavigatorScreenParams } from '@react-navigation/native'
 
 export type RootStackParamList = {
   ProductsOverviewScreen: undefined
-  ProductDetailScreen: { productId: string, productTitle: string }
+  ProductDetailScreen: { productId: string; productTitle: string }
 }
 
 export type NavigationProp = NativeStackScreenProps<RootStackParamList>
@@ -33,7 +33,10 @@ const MainStackNavigator = () => {
         name="ProductsOverviewScreen"
         component={ProductsOverviewScreen}
       />
-      <RootStack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
+      <RootStack.Screen
+        name="ProductDetailScreen"
+        component={ProductDetailScreen}
+      />
     </RootStack.Navigator>
   )
 }
