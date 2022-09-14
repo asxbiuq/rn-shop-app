@@ -7,6 +7,9 @@ import ProductItem from '../../components/shop/ProductItem'
 import { useNavigation } from '@react-navigation/native'
 import type { NavigationProp } from '../../navigation/ShopNavigator'
 import { addToCart } from '../../slice/cartSlice'
+import useHeaderRight from '../../hooks/useHeaderRight'
+import HeaderButton from '../../components/UI/HeaderButton'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
 
 // type Props = NativeStackScreenProps<RootStackParamList>
@@ -17,7 +20,10 @@ export default () => {
   const navigation = useNavigation<ProductsOverviewScreenNavigationProp>()
   const dispatch = useDispatch()
 
-  useHeaderTitle(() => <Text>All Product</Text>)
+  useHeaderTitle(() => <Text>全部商品</Text>)
+  useHeaderRight(() => <HeaderButtons HeaderButtonComponent={HeaderButton}>
+    <Item title='购物车' iconName={'cart'}/>
+  </HeaderButtons>)
 
   return (
     <FlatList

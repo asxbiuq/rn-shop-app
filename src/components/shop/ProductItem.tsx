@@ -38,10 +38,10 @@ export default ({
         <View style={styles.action}>
           <Button
             color={Colors.primary}
-            title="View Details"
+            title="查看详情"
             onPress={onViewDetail}
           />
-          <Button color={Colors.primary} title="To Cart" onPress={onAddToCart} />
+          <Button color={Colors.primary} title="加入购物车" onPress={onAddToCart} />
         </View>
       </View>
     </TouchableOpacity>
