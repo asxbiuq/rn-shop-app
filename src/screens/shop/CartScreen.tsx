@@ -1,10 +1,21 @@
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
-import { totalAmount } from '../../slice/cartSlice'
+import { items, totalAmount } from '../../slice/cartSlice'
 import Colors from '../../constants/Colors'
+import CartItem from '../../components/shop/CartItem'
 
 export default () => {
   const cartTotalAmount = useSelector(totalAmount)
+  const cartItems = useSelector(items)
+  const transformedCartItems = cartItems.map((item,index) => {
+    return {
+      productId: index.toString(),
+      productTitle: item.productTitle,
+      productPrice: item.productPrice,
+      quantity: item.quantity,
+      sum: item.sum
+    }
+  })
 
   return (
     <View style={styles.screen}>
@@ -15,11 +26,22 @@ export default () => {
           </Text>
           <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
         </Text>
-        <Button title="立刻下单" />
+        <Button 
+          title="立刻下单" 
+          disabled={cartItems.length === 0}
+          color={Colors.accent}
+        />
       </View>
-      <View>
-        <Text>购物车 元素</Text>
-      </View>
+      <FlatList
+        data={transformedCartItems}
+        keyExtractor={item => item.productId}
+        renderItem={itemData => <CartItem
+          quantity={itemData.item.quantity}
+          title={itemData.item.productTitle}
+          amount={itemData.item.sum}
+          onRemove={()=>{}}
+        />}
+      />
     </View>
   )
 }
