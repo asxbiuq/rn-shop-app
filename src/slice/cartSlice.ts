@@ -65,12 +65,13 @@ export const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      const selectedCartItem = action.payload
+      const selectedCartItem:CartItem = action.payload
       const { productTitle, productPrice } = selectedCartItem
-
-      const currentItem = state.items.find(item => {
+      const { items } = current(state)
+      const currentItem = items.find(item => 
         item.productTitle === productTitle
-      })
+      )
+
 
       if (!currentItem) {
         return state
@@ -79,15 +80,20 @@ export const cartSlice = createSlice({
       let newItems
 
       if (currentItem.quantity > 1) {
-        newItems = state.items.map(item => {
+        newItems = items.map((item:CartItem) => {
           if (item.productTitle === productTitle) {
-            item.quantity -= 1
-            item.sum = item.sum - productPrice
+            const newItem = {
+              productPrice: item.productPrice,
+              productTitle: item.productTitle,
+              quantity: item.quantity - 1,
+              sum: item.sum - productPrice
+            }
+            return newItem
           }
           return item
         })
       } else {
-        newItems = state.items.filter((item) => {
+        newItems = items.filter((item) => {
           item.productTitle === productTitle
         })
       }
