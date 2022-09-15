@@ -1,12 +1,13 @@
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native'
-import { useSelector } from 'react-redux'
-import { items, totalAmount } from '../../slice/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { items, removeFromCart, totalAmount } from '../../slice/cartSlice'
 import Colors from '../../constants/Colors'
 import CartItem from '../../components/shop/CartItem'
 
 export default () => {
   const cartTotalAmount = useSelector(totalAmount)
   const cartItems = useSelector(items)
+  const dispatch = useDispatch()
   const transformedCartItems = cartItems.map((item, index) => {
     return {
       productId: index.toString(),
@@ -33,12 +34,14 @@ export default () => {
       <FlatList
         data={transformedCartItems}
         keyExtractor={(item) => item.productId}
-        renderItem={(itemData) => (
+        renderItem={({item}) => (
           <CartItem
-            quantity={itemData.item.quantity}
-            title={itemData.item.productTitle}
-            amount={itemData.item.sum}
-            onRemove={() => {}}
+            quantity={item.quantity}
+            title={item.productTitle}
+            amount={item.sum}
+            onRemove={() => {
+              dispatch(removeFromCart(item))
+            }}
           />
         )}
       />

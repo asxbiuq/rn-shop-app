@@ -64,6 +64,41 @@ export const cartSlice = createSlice({
         totalAmount: totalAmount + prodPrice,
       }
     },
+    removeFromCart: (state, action) => {
+      const selectedCartItem = action.payload
+      const { productTitle, productPrice } = selectedCartItem
+
+      const currentItem = state.items.find(item => {
+        item.productTitle === productTitle
+      })
+
+      if (!currentItem) {
+        return state
+      }
+
+      let newItems
+
+      if (currentItem.quantity > 1) {
+        newItems = state.items.map(item => {
+          if (item.productTitle === productTitle) {
+            item.quantity -= 1
+            item.sum = item.sum - productPrice
+          }
+          return item
+        })
+      } else {
+        newItems = state.items.filter((item) => {
+          item.productTitle === productTitle
+        })
+      }
+
+      return {
+        ...state,
+        items: newItems,
+        totalAmount: state.totalAmount - productPrice
+      }
+
+    }
   },
 })
 
@@ -71,6 +106,6 @@ export const totalAmount = (state: State) => state.cart.totalAmount
 export const items = (state: State) => state.cart.items
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = cartSlice.actions
+export const { addToCart,removeFromCart } = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer
