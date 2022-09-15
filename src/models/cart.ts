@@ -4,7 +4,6 @@ class CartItem {
   productTitle: string
   sum: number
 
-
   constructor(
     quantity: number,
     productPrice: number,

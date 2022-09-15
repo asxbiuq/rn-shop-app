@@ -7,7 +7,7 @@ import Colors from '../constants/Colors'
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigatorScreenParams } from '@react-navigation/native'
-import CartScreen from '../screens/shop/CartScreen' 
+import CartScreen from '../screens/shop/CartScreen'
 
 export type RootStackParamList = {
   ProductsOverviewScreen: undefined
@@ -39,10 +39,7 @@ const MainStackNavigator = () => {
         name="ProductDetailScreen"
         component={ProductDetailScreen}
       />
-      <RootStack.Screen
-        name="CartScreen"
-        component={CartScreen}
-      />
+      <RootStack.Screen name="CartScreen" component={CartScreen} />
     </RootStack.Navigator>
   )
 }

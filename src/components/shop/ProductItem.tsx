@@ -41,7 +41,11 @@ export default ({
             title="查看详情"
             onPress={onViewDetail}
           />
-          <Button color={Colors.primary} title="加入购物车" onPress={onAddToCart} />
+          <Button
+            color={Colors.primary}
+            title="加入购物车"
+            onPress={onAddToCart}
+          />
         </View>
       </View>
     </TouchableOpacity>

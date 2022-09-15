@@ -1,4 +1,4 @@
-import { createSlice, current  } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { CARTITEM } from '../data/dummy-data'
 
@@ -11,7 +11,7 @@ export interface CartState {
   totalAmount: number
 }
 
-const initialState : CartState = {
+const initialState: CartState = {
   items: [],
   totalAmount: 0,
 }
@@ -21,15 +21,18 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const addedProduct:Product = action.payload
+      const addedProduct: Product = action.payload
 
       const prodPrice = addedProduct.price
       const proTitle = addedProduct.title
-      let updatedOrNewCartItem : CartItem
-      const { items, totalAmount } :{items:CartItem[],totalAmount:number} = current(state)
- 
-      const addedItem = items.find((item:CartItem) => item.productTitle === addedProduct.title)
+      let updatedOrNewCartItem: CartItem
+      const { items, totalAmount }: { items: CartItem[]; totalAmount: number } =
+        current(state)
 
+      const addedItem = items.find(
+        (item: CartItem) => item.productTitle === addedProduct.title
+      )
+      let newItems
 
       if (addedItem) {
         updatedOrNewCartItem = {
@@ -38,18 +41,26 @@ export const cartSlice = createSlice({
           productTitle: proTitle,
           sum: addedItem.sum + prodPrice,
         }
+        newItems = items.map((item:CartItem) => {
+          if (item.productTitle === addedProduct.title) {
+            return updatedOrNewCartItem
+          }
+          return item
+        })
       } else {
         updatedOrNewCartItem = {
           quantity: 1,
           productPrice: prodPrice,
           productTitle: proTitle,
-          sum:  prodPrice,
+          sum: prodPrice,
         }
+        newItems = [ ...items, updatedOrNewCartItem]
       }
+      
 
       return {
         ...state,
-        items: [ ...items,  updatedOrNewCartItem ],
+        items: newItems,
         totalAmount: totalAmount + prodPrice,
       }
     },

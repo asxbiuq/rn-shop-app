@@ -11,7 +11,6 @@ import useHeaderRight from '../../hooks/useHeaderRight'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 
-
 // type Props = NativeStackScreenProps<RootStackParamList>
 type ProductsOverviewScreenNavigationProp = NavigationProp['navigation']
 
@@ -21,15 +20,15 @@ export default () => {
   const dispatch = useDispatch()
 
   useHeaderTitle(() => <Text>全部商品</Text>)
-  useHeaderRight(() => <HeaderButtons HeaderButtonComponent={HeaderButton}>
-    <Item 
-      title='购物车' 
-      iconName={'cart'}
-      onPress={
-        () => navigation.navigate('CartScreen')
-      }
-    />
-  </HeaderButtons>)
+  useHeaderRight(() => (
+    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <Item
+        title="购物车"
+        iconName={'cart'}
+        onPress={() => navigation.navigate('CartScreen')}
+      />
+    </HeaderButtons>
+  ))
 
   return (
     <FlatList

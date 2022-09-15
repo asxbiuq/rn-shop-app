@@ -8,7 +8,6 @@ import useHeaderTitle from '../../hooks/useHeaderTitle'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addToCart } from '../../slice/cartSlice'
 
-
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
   'ProductDetailScreen'
@@ -28,9 +27,12 @@ export default () => {
     <ScrollView>
       <Image style={styles.image} source={{ uri: selectedProduct?.imageUrl }} />
       <View style={styles.action}>
-        <Button title="加入购物车" onPress={()=>{
-          dispatch(addToCart(selectedProduct))
-        }}/>
+        <Button
+          title="加入购物车"
+          onPress={() => {
+            dispatch(addToCart(selectedProduct))
+          }}
+        />
       </View>
       <Text style={styles.price}>${selectedProduct?.price.toFixed(2)}</Text>
       <Text style={styles.description}>{selectedProduct?.description}</Text>

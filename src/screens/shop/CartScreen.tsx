@@ -7,13 +7,13 @@ import CartItem from '../../components/shop/CartItem'
 export default () => {
   const cartTotalAmount = useSelector(totalAmount)
   const cartItems = useSelector(items)
-  const transformedCartItems = cartItems.map((item,index) => {
+  const transformedCartItems = cartItems.map((item, index) => {
     return {
       productId: index.toString(),
       productTitle: item.productTitle,
       productPrice: item.productPrice,
       quantity: item.quantity,
-      sum: item.sum
+      sum: item.sum,
     }
   })
 
@@ -21,26 +21,26 @@ export default () => {
     <View style={styles.screen}>
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
-          <Text>
-            总和: 
-          </Text>
+          <Text>总和:</Text>
           <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
         </Text>
-        <Button 
-          title="立刻下单" 
+        <Button
+          title="立刻下单"
           disabled={cartItems.length === 0}
           color={Colors.accent}
         />
       </View>
       <FlatList
         data={transformedCartItems}
-        keyExtractor={item => item.productId}
-        renderItem={itemData => <CartItem
-          quantity={itemData.item.quantity}
-          title={itemData.item.productTitle}
-          amount={itemData.item.sum}
-          onRemove={()=>{}}
-        />}
+        keyExtractor={(item) => item.productId}
+        renderItem={(itemData) => (
+          <CartItem
+            quantity={itemData.item.quantity}
+            title={itemData.item.productTitle}
+            amount={itemData.item.sum}
+            onRemove={() => {}}
+          />
+        )}
       />
     </View>
   )
@@ -48,7 +48,7 @@ export default () => {
 
 const styles = StyleSheet.create({
   screen: {
-    margin: 20
+    margin: 20,
   },
   summary: {
     flexDirection: 'row',
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   amount: {
-    color: Colors.accent
-  }
+    color: Colors.accent,
+  },
 })
