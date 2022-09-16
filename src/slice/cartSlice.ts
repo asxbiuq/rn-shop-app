@@ -106,7 +106,7 @@ export const cartSlice = createSlice({
       }
 
     },
-    addOrder: () => {
+    clearCart: () => {
       return initialState
     }
   },
@@ -116,6 +116,6 @@ export const totalAmount = (state: State) => state.cart.totalAmount
 export const items = (state: State) => state.cart.items
 
 // Action creators are generated for each case reducer function
-export const { addToCart,removeFromCart } = cartSlice.actions
+export const { addToCart,removeFromCart,clearCart } = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer
