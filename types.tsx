@@ -37,7 +37,7 @@ export type RootDrawerScreenProps<Screen extends keyof RootDrawerParamList> = Co
   NativeStackScreenProps<RootStackParamList>
 >;
 
-interface Product  {
+export interface Product  {
   id: string
   ownerId: string
   title: string
@@ -45,13 +45,13 @@ interface Product  {
   description: string
   price: number
 }
-interface CartItem  {
+export interface CartItem  {
   quantity: number
   productPrice: number
   productTitle: string
   sum: number
 }
-interface Order  {
+export interface Order  {
   id: string
   items: CartItem
   totalAmount: number

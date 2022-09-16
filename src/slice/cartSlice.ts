@@ -1,6 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { CARTITEM } from '../data/dummy-data'
+import { CartItem, Product } from '../../types'
 
 export interface State {
   cart: CartState
@@ -104,6 +105,9 @@ export const cartSlice = createSlice({
         totalAmount: state.totalAmount - productPrice
       }
 
+    },
+    addOrder: () => {
+      return initialState
     }
   },
 })

@@ -6,7 +6,13 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '../../navigation/ShopNavigator'
+import OrderItem from '../../components/shop/OrderItem'
+import dayjs from 'dayjs'
+import  isLeapYear from 'dayjs/plugin/isLeapYear'
+import 'dayjs/locale/zh-cn'
 
+dayjs.extend(isLeapYear) // 使用插件
+dayjs.locale('zh-cn') // 使用本地化语言
 
 type OrdersScreenNavigationProp = NavigationProp['navigation']
 
@@ -35,7 +41,12 @@ export default () => {
     <FlatList 
       data={userOrders}
       keyExtractor={item => item.id}
-      renderItem={({item}) => <Text>{item.totalAmount}</Text>}
+      renderItem={({item}) => (
+        <OrderItem 
+          amount={item.totalAmount} 
+          date={item.date}
+        />
+      )}
     />
   )
 }

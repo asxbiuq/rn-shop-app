@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { PRODUCTS } from '../data/dummy-data'
+import { Product } from '../../types'
 
 export interface State {
   product: ProductState
