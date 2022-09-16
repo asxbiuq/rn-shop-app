@@ -1,7 +1,7 @@
 import { FlatList } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { availableProducts } from '../../slice/productSlice'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import useHeaderTitle from '../../hooks/useHeaderTitle'
 import ProductItem from '../../components/shop/ProductItem'
 import { useNavigation } from '@react-navigation/native'
@@ -10,7 +10,7 @@ import { addToCart } from '../../slice/cartSlice'
 import useHeaderRight from '../../hooks/useHeaderRight'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-
+import { DrawerActions } from '@react-navigation/native';
 // type Props = NativeStackScreenProps<RootStackParamList>
 type ProductsOverviewScreenNavigationProp = NavigationProp['navigation']
 
@@ -19,7 +19,20 @@ export default () => {
   const navigation = useNavigation<ProductsOverviewScreenNavigationProp>()
   const dispatch = useDispatch()
 
-  useHeaderTitle(() => <Text>全部商品</Text>)
+  useHeaderTitle(() => (
+    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <View style={{flexDirection:'row'}}>
+        <Item
+          title="购物车"
+          iconName={'menu'}
+          onPress={() => {
+            navigation.dispatch(DrawerActions.toggleDrawer())
+          }}
+        />
+        <Text>所有商品</Text>
+      </View>
+    </HeaderButtons>
+  ))
   useHeaderRight(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item

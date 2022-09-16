@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native'
 import { View, Text, Image, Button, StyleSheet } from 'react-native'
-import { RootStackParamList } from '../../navigation/ShopNavigator'
+import { RootStackParamList } from '../../navigation/StackNavigator'
 import type { RouteProp } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { availableProducts } from '../../slice/productSlice'
