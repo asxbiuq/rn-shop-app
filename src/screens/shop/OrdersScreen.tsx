@@ -45,6 +45,7 @@ export default () => {
         <OrderItem 
           amount={item.totalAmount} 
           date={item.date}
+          items={item.items}
         />
       )}
     />

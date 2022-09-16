@@ -53,7 +53,7 @@ export interface CartItem  {
 }
 export interface Order  {
   id: string
-  items: CartItem
+  items: CartItem[]
   totalAmount: number
   date: string
 }
