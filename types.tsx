@@ -38,3 +38,24 @@
 //   BottomTabScreenProps<RootTabParamList, Screen>,
 //   NativeStackScreenProps<RootStackParamList>
 // >;
+
+interface Product  {
+  id: string
+  ownerId: string
+  title: string
+  imageUrl: string
+  description: string
+  price: number
+}
+interface CartItem  {
+  quantity: number
+  productPrice: number
+  productTitle: string
+  sum: number
+}
+interface Order  {
+  id: string
+  items: CartItem
+  totalAmount: number
+  date: string
+}

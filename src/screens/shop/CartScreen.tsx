@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { items, removeFromCart, totalAmount } from '../../slice/cartSlice'
 import Colors from '../../constants/Colors'
 import CartItem from '../../components/shop/CartItem'
+import { addOrder } from '../../slice/orderSlice'
 
 export default () => {
   const cartTotalAmount = useSelector(totalAmount)
@@ -29,6 +30,9 @@ export default () => {
           title="立刻下单"
           disabled={cartItems.length === 0}
           color={Colors.accent}
+          onPress={() => {
+            dispatch(addOrder({ cartItems, cartTotalAmount }))
+          }}
         />
       </View>
       <FlatList
