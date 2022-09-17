@@ -3,14 +3,12 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { CARTITEM } from '../data/dummy-data'
 import { Order } from '../../types'
 
-
-
 export interface OrderState {
   orders: Order[]
 }
 
 const initialState: OrderState = {
-  orders: []
+  orders: [],
 }
 
 export const orderSlice = createSlice({
@@ -23,15 +21,14 @@ export const orderSlice = createSlice({
         id: new Date().toString(),
         items: cartItems,
         totalAmount: cartTotalAmount,
-        date: new Date().toString()
+        date: new Date().toString(),
       }
-     
+
       return {
         ...state,
-        orders: state.orders.concat(newOrder)
+        orders: state.orders.concat(newOrder),
       }
     },
-
   },
 })
 
@@ -41,7 +38,6 @@ export interface State {
   }
 }
 export const orders = (state: State) => state.order.orders
-
 
 // Action creators are generated for each case reducer function
 export const { addOrder } = orderSlice.actions

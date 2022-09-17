@@ -10,7 +10,7 @@ import { addToCart } from '../../slice/cartSlice'
 import useHeaderRight from '../../hooks/useHeaderRight'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-import { DrawerActions } from '@react-navigation/native';
+import { DrawerActions } from '@react-navigation/native'
 // type Props = NativeStackScreenProps<RootStackParamList>
 type ProductsOverviewScreenNavigationProp = NavigationProp['navigation']
 
@@ -21,7 +21,7 @@ export default () => {
 
   useHeaderTitle(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <View style={{flexDirection:'row'}}>
+      <View style={{ flexDirection: 'row' }}>
         <Item
           title="购物车"
           iconName={'menu'}

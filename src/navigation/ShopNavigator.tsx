@@ -13,6 +13,7 @@ export type RootStackParamList = {
   ProductsOverviewScreen: undefined
   ProductDetailScreen: { productId: string; productTitle: string }
   CartScreen: undefined
+  UserProductsScreen: undefined
 }
 
 export type NavigationProp = NativeStackScreenProps<RootStackParamList>

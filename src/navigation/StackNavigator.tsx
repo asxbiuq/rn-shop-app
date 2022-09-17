@@ -9,7 +9,8 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { NavigatorScreenParams } from '@react-navigation/native'
 import CartScreen from '../screens/shop/CartScreen'
 import OrdersScreen from '../screens/shop/OrdersScreen'
-import type { CompositeScreenProps } from '@react-navigation/native';
+import type { CompositeScreenProps } from '@react-navigation/native'
+import UserProductsScreen from '../screens/user/UserProductsScreen'
 
 export type RootStackParamList = {
   ProductsOverviewScreen: NavigatorScreenParams<OrdersStackParamList>
@@ -55,23 +56,26 @@ export type OrdersStackParamList = {
 }
 export type OrdersNavigationProp = NativeStackScreenProps<OrdersStackParamList>
 
-
 const OrdersStack = createStackNavigator<OrdersStackParamList>()
 
 const OrdersStackNavigator = () => {
   return (
     <OrdersStack.Navigator screenOptions={screenOptionStyle}>
-      <OrdersStack.Screen
-        name="OrdersScreen"
-        component={OrdersScreen}
-      />
+      <OrdersStack.Screen name="OrdersScreen" component={OrdersScreen} />
     </OrdersStack.Navigator>
   )
 }
-// type ProductsOverviewScreenProps = CompositeScreenProps<
-//   StackScreenProps<RootStackParamList>,
-//   DrawerScreenProps<DrawerParamList>
-  
-// >;
+export type UserStackParamList = {
+  UserProductsScreen: undefined
+}
+const UserStack = createStackNavigator<UserStackParamList>()
 
-export { MainStackNavigator, OrdersStackNavigator }
+const UserStackNavigator = () => {
+  return (
+    <UserStack.Navigator screenOptions={screenOptionStyle}>
+      <UserStack.Screen name="UserProductsScreen" component={UserProductsScreen} />
+    </UserStack.Navigator>
+  )
+}
+
+export { MainStackNavigator, OrdersStackNavigator, UserStackNavigator }

@@ -1,6 +1,11 @@
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearCart, items, removeFromCart, totalAmount } from '../../slice/cartSlice'
+import {
+  clearCart,
+  items,
+  removeFromCart,
+  totalAmount,
+} from '../../slice/cartSlice'
 import Colors from '../../constants/Colors'
 import CartItem from '../../components/shop/CartItem'
 import { addOrder } from '../../slice/orderSlice'
@@ -39,7 +44,7 @@ export default () => {
       <FlatList
         data={transformedCartItems}
         keyExtractor={(item) => item.productId}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <CartItem
             quantity={item.quantity}
             title={item.productTitle}

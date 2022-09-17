@@ -25,31 +25,32 @@ export default ({ amount, date, items }: Props) => {
         <Text style={styles.totalAmount}>${amount.toFixed(2)}</Text>
         <Text style={styles.date}>{dayjs(date).format('DD/MM/YYYY')}</Text>
       </View>
-      <Button 
-        color={Colors.primary} 
-        title='查看详情' 
+      <Button
+        color={Colors.primary}
+        title={showDetails ? '隐藏详情' : '查看详情'}
         onPress={() => {
-          setShowDetails(prevState => !prevState)
+          setShowDetails((prevState) => !prevState)
         }}
       />
-      {showDetails && <View>
-        {items.map(item => 
-        <CartItem 
-            quantity={item.quantity} 
-            amount={item.sum} 
-            title={item.productTitle}
-            onRemove={() => {
-
-            }}
-            key={item.productTitle}   
-        />)}
-      </View>}
+      {showDetails && (
+        <View style={styles.detailItems}>
+          {items.map((item) => (
+            <CartItem
+              quantity={item.quantity}
+              amount={item.sum}
+              title={item.productTitle}
+              onRemove={() => {}}
+              key={item.productTitle}
+            />
+          ))}
+        </View>
+      )}
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  orderItem:{
+  orderItem: {
     shadowColor: 'black',
     shadowOpacity: 0.26,
     shadowOffset: { width: 0, height: 2 },
@@ -59,22 +60,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     margin: 20,
     padding: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   summary: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    marginBottom: 15
+    marginBottom: 15,
   },
   totalAmount: {
     fontFamily: 'open-sans-bold',
-    fontSize: 16
+    fontSize: 16,
   },
   date: {
     fontSize: 16,
     fontFamily: 'open-sans',
     color: '#888',
+  },
+  detailItems: {
+    width: '100%'
   }
 })
