@@ -1,15 +1,16 @@
-import { useSelector } from "react-redux"
-import { userProducts } from "../../slice/productSlice"
+import { useSelector } from 'react-redux'
+import { userProducts } from '../../slice/productSlice'
 import { FlatList, View, Text } from 'react-native'
-import ProductItem from "../../components/shop/ProductItem"
-import { DrawerActions, useNavigation } from "@react-navigation/native"
-import useHeaderTitle from "../../hooks/useHeaderTitle"
-import React from "react"
-import { HeaderButtons, Item } from "react-navigation-header-buttons"
-import { NavigationProp } from "../../navigation/ShopNavigator"
+import ProductItem from '../../components/shop/ProductItem'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
+import useHeaderTitle from '../../hooks/useHeaderTitle'
+import React from 'react'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+// import { NavigationProp } from "../../navigation/ShopNavigator"
 import HeaderButton from '../../components/UI/HeaderButton'
+import { StackNavigationProp } from '../../../types'
 
-type UserProductsScreenNavigationProp = NavigationProp['navigation']
+type UserProductsScreenNavigationProp = StackNavigationProp['navigation']
 
 export default () => {
   const products = useSelector(userProducts)
@@ -30,17 +31,18 @@ export default () => {
     </HeaderButtons>
   ))
   return (
-    <FlatList 
+    <FlatList
       data={products}
-      keyExtractor={product => product.id}
-      renderItem={({item}) => 
-      <ProductItem 
-        imageUrl={item.imageUrl}
-        title={item.title}
-        price={item.price}
-        onViewDetail={() => {}}
-        onAddToCart={() => {}}
-      />}
+      keyExtractor={(product) => product.id}
+      renderItem={({ item }) => (
+        <ProductItem
+          imageUrl={item.imageUrl}
+          title={item.title}
+          price={item.price}
+          onViewDetail={() => {}}
+          onAddToCart={() => {}}
+        />
+      )}
     />
   )
 }

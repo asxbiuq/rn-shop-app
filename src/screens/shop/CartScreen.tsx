@@ -37,7 +37,7 @@ export default () => {
           color={Colors.accent}
           onPress={() => {
             dispatch(addOrder({ cartItems, cartTotalAmount }))
-            dispatch(clearCart())
+            dispatch(clearCart(''))
           }}
         />
       </View>

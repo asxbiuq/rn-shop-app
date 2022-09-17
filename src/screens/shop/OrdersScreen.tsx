@@ -5,16 +5,16 @@ import useHeaderTitle from '../../hooks/useHeaderTitle'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { DrawerActions, useNavigation } from '@react-navigation/native'
-import type { NavigationProp } from '../../navigation/ShopNavigator'
 import OrderItem from '../../components/shop/OrderItem'
 import dayjs from 'dayjs'
 import isLeapYear from 'dayjs/plugin/isLeapYear'
 import 'dayjs/locale/zh-cn'
+import { StackNavigationProp } from '../../../types'
 
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.locale('zh-cn') // 使用本地化语言
 
-type OrdersScreenNavigationProp = NavigationProp['navigation']
+type OrdersScreenNavigationProp = StackNavigationProp['navigation']
 
 export default () => {
   const userOrders = useSelector(orders)

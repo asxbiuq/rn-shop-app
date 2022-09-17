@@ -1,39 +1,17 @@
-import {
-  createStackNavigator,
-  StackNavigationProp,
-} from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen'
-import Colors from '../constants/Colors'
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen'
-import type { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { NavigatorScreenParams } from '@react-navigation/native'
 import CartScreen from '../screens/shop/CartScreen'
 import OrdersScreen from '../screens/shop/OrdersScreen'
-import type { CompositeScreenProps } from '@react-navigation/native'
 import UserProductsScreen from '../screens/user/UserProductsScreen'
-
-export type RootStackParamList = {
-  ProductsOverviewScreen: NavigatorScreenParams<OrdersStackParamList>
-  ProductDetailScreen: { productId: string; productTitle: string }
-  CartScreen: undefined
-}
-
-export type StackScreenProps = NativeStackScreenProps<RootStackParamList>
-// type ProfileScreenProps = CompositeScreenProps<
-//   NavigationProp<TabParamList, 'Profile'>,
-//   StackScreenProps<StackParamList>
-// >;
+import {
+  OrdersStackParamList,
+  RootStackParamList,
+  UserStackParamList,
+} from '../../types'
+import { screenOptionStyle } from './screenOptionStyle'
 
 const RootStack = createStackNavigator<RootStackParamList>()
-
-const screenOptionStyle = {
-  headerStyle: {
-    backgroundColor: Colors.primary,
-  },
-  headerTintColor: 'white',
-  headerBackTitle: 'Back',
-  headerShown: true,
-}
 
 const MainStackNavigator = () => {
   return (
@@ -51,11 +29,6 @@ const MainStackNavigator = () => {
   )
 }
 
-export type OrdersStackParamList = {
-  OrdersScreen: undefined
-}
-export type OrdersNavigationProp = NativeStackScreenProps<OrdersStackParamList>
-
 const OrdersStack = createStackNavigator<OrdersStackParamList>()
 
 const OrdersStackNavigator = () => {
@@ -65,15 +38,16 @@ const OrdersStackNavigator = () => {
     </OrdersStack.Navigator>
   )
 }
-export type UserStackParamList = {
-  UserProductsScreen: undefined
-}
+
 const UserStack = createStackNavigator<UserStackParamList>()
 
 const UserStackNavigator = () => {
   return (
     <UserStack.Navigator screenOptions={screenOptionStyle}>
-      <UserStack.Screen name="UserProductsScreen" component={UserProductsScreen} />
+      <UserStack.Screen
+        name="UserProductsScreen"
+        component={UserProductsScreen}
+      />
     </UserStack.Navigator>
   )
 }

@@ -1,41 +1,14 @@
 import { createDrawerNavigator } from '@react-navigation/drawer'
-// import TabNavigator from "./TabNavigator";
-import { MainStackNavigator, OrdersStackNavigator, UserStackNavigator } from './StackNavigator'
-import type { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { HeaderButtons, Item } from 'react-navigation-header-buttons'
-import HeaderButton from '../components/UI/HeaderButton'
-import Colors from '../constants/Colors'
-import DrawerHeaderButton from '../components/UI/DrawerHeaderButton'
-import UserProductsScreen from '../screens/user/UserProductsScreen'
-
-
-export type DrawerParamList = {
-  MainStackNavigator: undefined
-  Orders: undefined
-  UserStackNavigator: undefined
-}
-
-export type NavigationProp = NativeStackScreenProps<DrawerParamList>
+import {
+  MainStackNavigator,
+  OrdersStackNavigator,
+  UserStackNavigator,
+} from './StackNavigator'
+import { ordersStackDrawerIcon } from '../components/UI/ordersStackDrawerIcon'
+import { userProductsScreenIcon } from '../components/UI/userProductsScreenIcon'
+import { mainStackNavigatorDrawerIcon } from '../components/UI/mainStackDrawerIcon'
 
 const Drawer = createDrawerNavigator()
-
-const mainStackNavigatorDrawerIcon = () => (
-  <HeaderButtons HeaderButtonComponent={DrawerHeaderButton}>
-    <Item title="购物车" iconName={'cart'} />
-  </HeaderButtons>
-)
-
-const ordersDrawerIcon = () => (
-  <HeaderButtons HeaderButtonComponent={DrawerHeaderButton}>
-    <Item title="菜单" iconName={'menu'} />
-  </HeaderButtons>
-)
-
-const userProductsScreenIcon = () => (
-  <HeaderButtons HeaderButtonComponent={DrawerHeaderButton}>
-    <Item title="用户" iconName={'create'} />
-  </HeaderButtons>
-)
 
 const DrawerNavigator = () => {
   return (
@@ -60,7 +33,7 @@ const DrawerNavigator = () => {
         name="订单"
         component={OrdersStackNavigator}
         options={{
-          drawerIcon: ordersDrawerIcon,
+          drawerIcon: ordersStackDrawerIcon,
         }}
       />
       <Drawer.Screen

@@ -3,39 +3,8 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
-import { DrawerScreenProps } from '@react-navigation/drawer'; 
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-    // interface ShopParamList extends ShopNavigatorParamList {}
-  }
-}
-
-export type RootStackParamList = {
-  shop: NavigatorScreenParams<RootDrawerParamList> | undefined;
-  Orders: undefined;
-  NotFound: undefined;
-};
-
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
-
-export type RootDrawerParamList = {
-  MainStackNavigator: undefined
-  Orders:undefined
-}
-
-
-
-export type RootDrawerScreenProps<Screen extends keyof RootDrawerParamList> = CompositeScreenProps<
-  DrawerScreenProps<RootDrawerParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
 
 export interface Product  {
   id: string
@@ -57,4 +26,30 @@ export interface Order  {
   items: CartItem[]
   totalAmount: number
   date: string
+}
+
+export type DrawerParamList = {
+  MainStackNavigator: undefined
+  Orders: undefined
+  UserStackNavigator: undefined
+}
+
+export type DrawerNavigationProp = NativeStackScreenProps<DrawerParamList>
+
+export type RootStackParamList = {
+  ProductsOverviewScreen: undefined
+  ProductDetailScreen: { productId: string; productTitle: string }
+  CartScreen: undefined
+}
+
+export type StackNavigationProp = NativeStackScreenProps<RootStackParamList>
+
+
+export type OrdersStackParamList = {
+  OrdersScreen: undefined
+}
+export type OrdersNavigationProp = NativeStackScreenProps<OrdersStackParamList>
+
+export type UserStackParamList = {
+  UserProductsScreen: undefined
 }

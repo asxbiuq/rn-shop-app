@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     color: '#888',
   },
   detailItems: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 })

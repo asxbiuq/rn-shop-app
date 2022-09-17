@@ -30,8 +30,7 @@ export const productSlice = createSlice({
 export const availableProducts = (state: State) =>
   state.product.availableProducts
 
-export const userProducts = (state: State) =>
-  state.product.userProducts
+export const userProducts = (state: State) => state.product.userProducts
 // Action creators are generated for each case reducer function
 // export const { incrementByAmount } = productSlice.actions
 

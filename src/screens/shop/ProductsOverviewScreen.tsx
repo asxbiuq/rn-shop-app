@@ -5,14 +5,14 @@ import { Text, View } from 'react-native'
 import useHeaderTitle from '../../hooks/useHeaderTitle'
 import ProductItem from '../../components/shop/ProductItem'
 import { useNavigation } from '@react-navigation/native'
-import type { NavigationProp } from '../../navigation/ShopNavigator'
 import { addToCart } from '../../slice/cartSlice'
 import useHeaderRight from '../../hooks/useHeaderRight'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { DrawerActions } from '@react-navigation/native'
-// type Props = NativeStackScreenProps<RootStackParamList>
-type ProductsOverviewScreenNavigationProp = NavigationProp['navigation']
+import { StackNavigationProp } from '../../../types'
+
+type ProductsOverviewScreenNavigationProp = StackNavigationProp['navigation']
 
 export default () => {
   const products = useSelector(availableProducts)
