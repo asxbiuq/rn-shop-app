@@ -6,6 +6,7 @@ import {
   Button,
   StyleSheet,
   TouchableOpacity,
+  GestureResponderEvent,
 } from 'react-native'
 import Colors from '../../constants/Colors'
 
@@ -13,20 +14,19 @@ interface Props {
   imageUrl: string
   title: string
   price: number
-
-  onViewDetail: (event: any) => void
-  onAddToCart: (event: any) => void
+  children: React.ReactNode
+  onSelect?: (event: GestureResponderEvent) => void
 }
 
 export default ({
   imageUrl,
   title,
   price,
-  onViewDetail,
-  onAddToCart,
+  children,
+  onSelect
 }: Props) => {
   return (
-    <TouchableOpacity onPress={onViewDetail}>
+    <TouchableOpacity onPress={onSelect}>
       <View style={styles.product}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -35,17 +35,8 @@ export default ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.price}>${price.toFixed(2)}</Text>
         </View>
-        <View style={styles.action}>
-          <Button
-            color={Colors.primary}
-            title="查看详情"
-            onPress={onViewDetail}
-          />
-          <Button
-            color={Colors.primary}
-            title="加入购物车"
-            onPress={onAddToCart}
-          />
+        <View style={styles.actions}>
+          {children}
         </View>
       </View>
     </TouchableOpacity>
@@ -78,7 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888',
   },
-  action: {
+  actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

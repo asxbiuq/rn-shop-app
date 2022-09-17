@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { userProducts } from '../../slice/productSlice'
-import { FlatList, View, Text } from 'react-native'
+import { FlatList, View, Text, Button } from 'react-native'
 import ProductItem from '../../components/shop/ProductItem'
 import { DrawerActions, useNavigation } from '@react-navigation/native'
 import useHeaderTitle from '../../hooks/useHeaderTitle'
@@ -9,6 +9,8 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 // import { NavigationProp } from "../../navigation/ShopNavigator"
 import HeaderButton from '../../components/UI/HeaderButton'
 import { StackNavigationProp } from '../../../types'
+import Colors from '../../constants/Colors'
+import { addToCart } from '../../slice/cartSlice'
 
 type UserProductsScreenNavigationProp = StackNavigationProp['navigation']
 
@@ -39,10 +41,30 @@ export default () => {
           imageUrl={item.imageUrl}
           title={item.title}
           price={item.price}
-          onViewDetail={() => {}}
-          onAddToCart={() => {}}
-        />
+          onSelect={() => {
+            
+          }}
+        >
+          <Button 
+            color={Colors.primary}
+            title={'编辑'}
+            onPress={() => {
+
+            }}
+          />
+          <Button 
+            color={Colors.primary}
+            title={'删除'}
+            onPress={() => {
+              // dispatch(addToCart({ title, price }))
+            }}
+          />
+        </ProductItem>
       )}
     />
   )
 }
+function dispatch(arg0: any) {
+  throw new Error('Function not implemented.')
+}
+
