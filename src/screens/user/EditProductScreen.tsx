@@ -1,12 +1,13 @@
 import { Text, ScrollView, TextInput, StyleSheet, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import HeaderButton from '../../components/UI/HeaderButton'
 import useHeaderRight from '../../hooks/useHeaderRight'
 import { RouteProp, useRoute } from '@react-navigation/native'
 import { UserStackParamList } from '../../../types'
 import { useAppSelector } from '../../hooks/useAppSelector'
-import { userProducts } from '../../slice/productSlice'
+import { createProduct, updateProduct, userProducts } from '../../slice/productSlice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 
 type EditProductScreenRouteProp = RouteProp<
   UserStackParamList,
@@ -15,7 +16,7 @@ type EditProductScreenRouteProp = RouteProp<
 
 export default () => {
   const route = useRoute<EditProductScreenRouteProp>()
-  let productId :string
+  let productId: string
   if (route.params?.productId) {
     productId = route.params?.productId
   } else {
@@ -23,25 +24,47 @@ export default () => {
   }
 
   const userProds = useAppSelector(userProducts)
-  const editedProduct = userProds.find(prod => prod.id === productId)
 
+  const editedProduct = userProds.find((prod) => prod.id === productId)
 
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : '')
-  const [imageUrl, setImageUrl] = useState(editedProduct ? editedProduct.imageUrl : '')
+  const [imageUrl, setImageUrl] = useState(
+    editedProduct ? editedProduct.imageUrl : ''
+  )
   const [price, setPrice] = useState('')
-  const [description, setDescription] = useState(editedProduct ? editedProduct.description : '')
+  const [description, setDescription] = useState(
+    editedProduct ? editedProduct.description : ''
+  )
 
-
+  const dispatch = useAppDispatch()
+  const submitHandler = useCallback(() => {
+    if (editedProduct) {
+      const updatedProduct = {
+        id: editedProduct.id,
+        ownerId: editedProduct.ownerId,
+        title,
+        imageUrl,
+        price: +price,
+        description
+      }
+      dispatch(updateProduct(updatedProduct))
+    } else {
+      const id = (Math.random()*100).toString()
+      const newProduct = {
+        id: id,
+        ownerId: '123456',
+        title,
+        imageUrl,
+        price: +price,
+        description
+      }
+      dispatch(createProduct(newProduct))
+    }
+  }, [dispatch, productId, title, imageUrl, price, description])
 
   useHeaderRight(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item
-        title="菜单"
-        iconName={'save'}
-        onPress={() => {
-          // navigation.dispatch(DrawerActions.toggleDrawer())
-        }}
-      />
+      <Item title="菜单" iconName={'save'} onPress={submitHandler} />
     </HeaderButtons>
   ))
 
@@ -64,14 +87,16 @@ export default () => {
             onChangeText={(text) => setImageUrl(text)}
           ></TextInput>
         </View>
-        {editedProduct ? null : (<View style={styles.formControl}>
-          <Text style={styles.label}>价格</Text>
-          <TextInput
-            style={styles.input}
-            value={price}
-            onChangeText={(text) => setPrice(text)}
-          ></TextInput>
-        </View>)}
+        {/* {editedProduct ? null : ( */}
+          <View style={styles.formControl}>
+            <Text style={styles.label}>价格</Text>
+            <TextInput
+              style={styles.input}
+              value={price.toString()}
+              onChangeText={(text) => setPrice(text)}
+            ></TextInput>
+          </View>
+        {/* )} */}
         <View style={styles.formControl}>
           <Text style={styles.label}>描述</Text>
           <TextInput

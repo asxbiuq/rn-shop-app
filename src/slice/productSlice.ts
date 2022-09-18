@@ -12,7 +12,7 @@ export interface ProductState {
 
 const initialState: ProductState = {
   availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter((prod) => prod.ownerId === '1354214'),
+  userProducts: PRODUCTS.filter((prod) => prod.ownerId === '123456'),
 }
 
 export const productSlice = createSlice({
@@ -31,6 +31,30 @@ export const productSlice = createSlice({
         ),
       }
     },
+    createProduct: (state, action: PayloadAction<Product>) => {
+      return {
+        ...state,
+        availableProducts: state.availableProducts.concat(action.payload),
+        userProducts: state.userProducts.concat(action.payload),
+      }
+    },
+    updateProduct: (state, action: PayloadAction<Product>) => {
+      const updatedProduct = action.payload
+
+      const updatedAvailableProducts = state.availableProducts.map((prod) =>
+        prod.id === updatedProduct.id ? updatedProduct : prod
+      )
+
+      const updatedUserProducts = state.userProducts.map((prod) =>
+        prod.id === updatedProduct.id ? updatedProduct : prod
+      )
+
+      return {
+        ...state,
+        availableProducts: updatedAvailableProducts,
+        userProducts: updatedUserProducts
+      }
+    },
   },
 })
 export interface State {
@@ -40,6 +64,6 @@ export const availableProducts = (state: State) =>
   state.product.availableProducts
 export const userProducts = (state: State) => state.product.userProducts
 // Action creators are generated for each case reducer function
-export const { deleteProduct } = productSlice.actions
+export const { deleteProduct, createProduct, updateProduct } = productSlice.actions
 
 export const productReducer = productSlice.reducer

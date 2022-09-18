@@ -51,13 +51,12 @@ export default () => {
           title="菜单"
           iconName={'create'}
           onPress={() => {
-            navigation.navigate('EditProductScreen',{})
+            navigation.navigate('EditProductScreen', {})
           }}
         />
       </View>
     </HeaderButtons>
   ))
-
 
   return (
     <FlatList
