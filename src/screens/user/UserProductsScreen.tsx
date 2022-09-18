@@ -8,19 +8,27 @@ import React from 'react'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 // import { NavigationProp } from "../../navigation/ShopNavigator"
 import HeaderButton from '../../components/UI/HeaderButton'
-import { StackNavigationProp } from '../../../types'
+import {
+  ShopStackNavigationProp,
+  UserScreenNavigationProp,
+} from '../../../types'
 import Colors from '../../constants/Colors'
 import { addToCart, deleteCartProduct } from '../../slice/cartSlice'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import useHeaderRight from '../../hooks/useHeaderRight'
 
-type UserProductsScreenNavigationProp = StackNavigationProp['navigation']
+type UserProductsScreenNavigationProp = UserScreenNavigationProp['navigation']
 
 export default () => {
   const products = useAppSelector(userProducts)
   const navigation = useNavigation<UserProductsScreenNavigationProp>()
   const dispatch = useAppDispatch()
-
+  const editProductHandler = (id: string) => {
+    navigation.navigate('EditProductScreen', {
+      productId: id,
+    })
+  }
   useHeaderTitle(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
       <View style={{ flexDirection: 'row' }}>
@@ -35,6 +43,22 @@ export default () => {
       </View>
     </HeaderButtons>
   ))
+
+  useHeaderRight(() => (
+    <HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <View style={{ flexDirection: 'row' }}>
+        <Item
+          title="菜单"
+          iconName={'create'}
+          onPress={() => {
+            navigation.navigate('EditProductScreen',{})
+          }}
+        />
+      </View>
+    </HeaderButtons>
+  ))
+
+
   return (
     <FlatList
       data={products}
@@ -45,17 +69,17 @@ export default () => {
           title={item.title}
           price={item.price}
           onSelect={() => {
-            
+            editProductHandler(item.id)
           }}
         >
-          <Button 
+          <Button
             color={Colors.primary}
             title={'编辑'}
             onPress={() => {
-
+              editProductHandler(item.id)
             }}
           />
-          <Button 
+          <Button
             color={Colors.primary}
             title={'删除'}
             onPress={() => {
@@ -67,5 +91,3 @@ export default () => {
     />
   )
 }
-
-

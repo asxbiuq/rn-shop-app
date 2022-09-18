@@ -17,7 +17,6 @@ export default () => {
   const cartItems = useAppSelector(items)
   const dispatch = useAppDispatch()
 
-
   const transformedCartItems = cartItems.map((item, index) => {
     return {
       productId: index.toString(),

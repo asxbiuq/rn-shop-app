@@ -41,7 +41,7 @@ export type RootStackParamList = {
   CartScreen: undefined
 }
 
-export type StackNavigationProp = NativeStackScreenProps<RootStackParamList>
+export type ShopStackNavigationProp = NativeStackScreenProps<RootStackParamList>
 
 
 export type OrdersStackParamList = {
@@ -51,4 +51,6 @@ export type OrdersNavigationProp = NativeStackScreenProps<OrdersStackParamList>
 
 export type UserStackParamList = {
   UserProductsScreen: undefined
+  EditProductScreen: {productId?:string} | undefined
 }
+export type UserScreenNavigationProp = NativeStackScreenProps<UserStackParamList>

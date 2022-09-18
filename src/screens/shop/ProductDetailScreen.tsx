@@ -25,7 +25,7 @@ export default () => {
   const dispatch = useAppDispatch()
 
   useHeaderTitle(() => <Text>{productTitle}</Text>)
-   
+
   if (!selectedProduct) {
     return null
   }

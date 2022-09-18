@@ -4,8 +4,6 @@ import { CARTITEM } from '../data/dummy-data'
 import { CartItem, Product } from '../../types'
 import { deleteProduct } from './productSlice'
 
-
-
 export interface CartState {
   items: CartItem[]
   totalAmount: number
@@ -106,8 +104,12 @@ export const cartSlice = createSlice({
       return initialState
     },
     deleteCartProduct: (state, action: PayloadAction<Product>) => {
-      const updatedItems = state.items.filter(item => item.productTitle !== action.payload.title)
-      const deletedProd = state.items.find(item => item.productTitle === action.payload.title)
+      const updatedItems = state.items.filter(
+        (item) => item.productTitle !== action.payload.title
+      )
+      const deletedProd = state.items.find(
+        (item) => item.productTitle === action.payload.title
+      )
       console.log('deleteCartProduct')
       if (!deletedProd) {
         return state
@@ -119,10 +121,14 @@ export const cartSlice = createSlice({
       }
     },
   },
-  extraReducers:(builder) => {
-    builder.addCase(deleteProduct, (state,action) => {
-      const updatedItems = state.items.filter(item => item.productTitle !== action.payload.title)
-      const deletedProd = state.items.find(item => item.productTitle === action.payload.title)
+  extraReducers: (builder) => {
+    builder.addCase(deleteProduct, (state, action) => {
+      const updatedItems = state.items.filter(
+        (item) => item.productTitle !== action.payload.title
+      )
+      const deletedProd = state.items.find(
+        (item) => item.productTitle === action.payload.title
+      )
       console.log('deleteCartProduct')
       if (!deletedProd) {
         return state
@@ -133,7 +139,7 @@ export const cartSlice = createSlice({
         totalAmount: state.totalAmount - deletedProd.sum,
       }
     })
-  }
+  },
 })
 
 export interface State {
@@ -144,6 +150,7 @@ export const totalAmount = (state: State) => state.cart.totalAmount
 export const items = (state: State) => state.cart.items
 
 // Action creators are generated for each case reducer function
-export const { addToCart, removeFromCart, clearCart, deleteCartProduct } = cartSlice.actions
+export const { addToCart, removeFromCart, clearCart, deleteCartProduct } =
+  cartSlice.actions
 
 export const cartReducer = cartSlice.reducer

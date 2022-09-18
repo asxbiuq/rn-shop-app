@@ -18,13 +18,7 @@ interface Props {
   onSelect?: (event: GestureResponderEvent) => void
 }
 
-export default ({
-  imageUrl,
-  title,
-  price,
-  children,
-  onSelect
-}: Props) => {
+export default ({ imageUrl, title, price, children, onSelect }: Props) => {
   return (
     <TouchableOpacity onPress={onSelect}>
       <View style={styles.product}>
@@ -35,9 +29,7 @@ export default ({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.price}>${price.toFixed(2)}</Text>
         </View>
-        <View style={styles.actions}>
-          {children}
-        </View>
+        <View style={styles.actions}>{children}</View>
       </View>
     </TouchableOpacity>
   )

@@ -10,6 +10,7 @@ import {
   UserStackParamList,
 } from '../../types'
 import { screenOptionStyle } from './screenOptionStyle'
+import EditProductScreen from '../screens/user/EditProductScreen'
 
 const RootStack = createStackNavigator<RootStackParamList>()
 
@@ -47,6 +48,10 @@ const UserStackNavigator = () => {
       <UserStack.Screen
         name="UserProductsScreen"
         component={UserProductsScreen}
+      />
+      <UserStack.Screen
+        name="EditProductScreen"
+        component={EditProductScreen}
       />
     </UserStack.Navigator>
   )

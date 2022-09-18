@@ -1,11 +1,9 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { PRODUCTS } from '../data/dummy-data'
 import { Product } from '../../types'
-import { deleteCartProduct } from './cartSlice';
-
-
+import { deleteCartProduct } from './cartSlice'
 
 export interface ProductState {
   availableProducts: Product[]
@@ -25,17 +23,21 @@ export const productSlice = createSlice({
       console.log('deleteProduct')
       return {
         ...state,
-        userProducts: state.userProducts.filter(prod => prod.id !== action.payload.id),
-        availableProducts: state.availableProducts.filter(prod => prod.id !== action.payload.id),
+        userProducts: state.userProducts.filter(
+          (prod) => prod.id !== action.payload.id
+        ),
+        availableProducts: state.availableProducts.filter(
+          (prod) => prod.id !== action.payload.id
+        ),
       }
     },
   },
-
 })
 export interface State {
   product: ProductState
 }
-export const availableProducts = (state: State) => state.product.availableProducts
+export const availableProducts = (state: State) =>
+  state.product.availableProducts
 export const userProducts = (state: State) => state.product.userProducts
 // Action creators are generated for each case reducer function
 export const { deleteProduct } = productSlice.actions

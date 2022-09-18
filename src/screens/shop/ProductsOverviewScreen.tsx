@@ -27,7 +27,7 @@ export default () => {
   const selectItemHandler = (id: string, title: string) => {
     navigation.navigate('ProductDetailScreen', {
       productId: id,
-      productTitle: title
+      productTitle: title,
     })
   }
 
@@ -63,18 +63,16 @@ export default () => {
           imageUrl={item.imageUrl}
           title={item.title}
           price={item.price}
-          onSelect={() => {
-
-          }}
+          onSelect={() => {}}
         >
-          <Button 
+          <Button
             color={Colors.primary}
             title={'查看详情'}
             onPress={() => {
               selectItemHandler(item.id, item.title)
             }}
           />
-          <Button 
+          <Button
             color={Colors.primary}
             title={'加入购物车'}
             onPress={() => {
