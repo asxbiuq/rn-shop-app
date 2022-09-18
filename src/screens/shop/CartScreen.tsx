@@ -32,7 +32,7 @@ export default () => {
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
           <Text>总和:</Text>
-          <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
+          <Text style={styles.amount}>¥{cartTotalAmount.toFixed(2)}</Text>
         </Text>
         <Button
           title="立刻下单"

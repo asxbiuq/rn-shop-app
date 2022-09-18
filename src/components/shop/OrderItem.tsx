@@ -22,7 +22,7 @@ export default ({ amount, date, items }: Props) => {
   return (
     <View style={styles.orderItem}>
       <View style={styles.summary}>
-        <Text style={styles.totalAmount}>${amount.toFixed(2)}</Text>
+        <Text style={styles.totalAmount}>¥{amount.toFixed(2)}</Text>
         <Text style={styles.date}>{dayjs(date).format('DD/MM/YYYY')}</Text>
       </View>
       <Button

@@ -18,7 +18,7 @@ export default ({ onRemove, quantity, title, amount }: Props) => {
         <Text style={styles.mainText}>{title}</Text>
       </Text>
       <View style={styles.itemIcon}>
-        <Text style={styles.mainText}>${amount.toFixed(2)}</Text>
+        <Text style={styles.mainText}>¥{amount.toFixed(2)}</Text>
         <TouchableOpacity onPress={onRemove} style={styles.deleteButton}>
           <Ionicons name="trash" size={23} color="red" />
         </TouchableOpacity>
