@@ -11,13 +11,15 @@ import HeaderButton from '../../components/UI/HeaderButton'
 import { StackNavigationProp } from '../../../types'
 import Colors from '../../constants/Colors'
 import { addToCart, deleteCartProduct } from '../../slice/cartSlice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 type UserProductsScreenNavigationProp = StackNavigationProp['navigation']
 
 export default () => {
-  const products = useSelector(userProducts)
+  const products = useAppSelector(userProducts)
   const navigation = useNavigation<UserProductsScreenNavigationProp>()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useHeaderTitle(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>

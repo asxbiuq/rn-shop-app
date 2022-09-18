@@ -13,13 +13,16 @@ import { DrawerActions } from '@react-navigation/native'
 import { StackNavigationProp } from '../../../types'
 import React from 'react'
 import Colors from '../../constants/Colors'
+import { AppDispatch } from '../../store'
+import { useAppSelector } from '../../hooks/useAppSelector'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 
 type ProductsOverviewScreenNavigationProp = StackNavigationProp['navigation']
 
 export default () => {
-  const products = useSelector(availableProducts)
+  const products = useAppSelector(availableProducts)
   const navigation = useNavigation<ProductsOverviewScreenNavigationProp>()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const selectItemHandler = (id: string, title: string) => {
     navigation.navigate('ProductDetailScreen', {

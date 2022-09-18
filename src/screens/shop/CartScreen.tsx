@@ -9,11 +9,15 @@ import {
 import Colors from '../../constants/Colors'
 import CartItem from '../../components/shop/CartItem'
 import { addOrder } from '../../slice/orderSlice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 export default () => {
-  const cartTotalAmount = useSelector(totalAmount)
-  const cartItems = useSelector(items)
-  const dispatch = useDispatch()
+  const cartTotalAmount = useAppSelector(totalAmount)
+  const cartItems = useAppSelector(items)
+  const dispatch = useAppDispatch()
+
+
   const transformedCartItems = cartItems.map((item, index) => {
     return {
       productId: index.toString(),
@@ -37,7 +41,7 @@ export default () => {
           color={Colors.accent}
           onPress={() => {
             dispatch(addOrder({ cartItems, cartTotalAmount }))
-            dispatch(clearCart(''))
+            dispatch(clearCart())
           }}
         />
       </View>

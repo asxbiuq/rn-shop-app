@@ -7,6 +7,9 @@ import useHeaderTitle from '../../hooks/useHeaderTitle'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addToCart } from '../../slice/cartSlice'
 import { RootStackParamList } from '../../../types'
+import { AppDispatch } from '../../store'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -16,10 +19,10 @@ type ProductDetailScreenRouteProp = RouteProp<
 export default () => {
   const route = useRoute<ProductDetailScreenRouteProp>()
   const { productId, productTitle } = route.params
-  const selectedProduct = useSelector(availableProducts).find(
+  const selectedProduct = useAppSelector(availableProducts).find(
     (prod) => prod.id === productId
   )
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useHeaderTitle(() => <Text>{productTitle}</Text>)
    
