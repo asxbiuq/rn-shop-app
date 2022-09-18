@@ -58,7 +58,6 @@ export default () => {
             title={'删除'}
             onPress={() => {
               dispatch(deleteProduct(item))
-              // dispatch(deleteCartProduct(item))
             }}
           />
         </ProductItem>

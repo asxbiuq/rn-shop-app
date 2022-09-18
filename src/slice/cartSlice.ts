@@ -2,6 +2,7 @@ import { createSlice, current } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { CARTITEM } from '../data/dummy-data'
 import { CartItem, Product } from '../../types'
+import { deleteProduct } from './productSlice'
 
 
 
@@ -107,7 +108,7 @@ export const cartSlice = createSlice({
     deleteCartProduct: (state, action: PayloadAction<Product>) => {
       const updatedItems = state.items.filter(item => item.productTitle !== action.payload.title)
       const deletedProd = state.items.find(item => item.productTitle === action.payload.title)
-
+      console.log('deleteCartProduct')
       if (!deletedProd) {
         return state
       }
@@ -116,8 +117,23 @@ export const cartSlice = createSlice({
         items: updatedItems,
         totalAmount: state.totalAmount - deletedProd.sum,
       }
-    }
+    },
   },
+  extraReducers:(builder) => {
+    builder.addCase(deleteProduct, (state,action) => {
+      const updatedItems = state.items.filter(item => item.productTitle !== action.payload.title)
+      const deletedProd = state.items.find(item => item.productTitle === action.payload.title)
+      console.log('deleteCartProduct')
+      if (!deletedProd) {
+        return state
+      }
+      return {
+        ...state,
+        items: updatedItems,
+        totalAmount: state.totalAmount - deletedProd.sum,
+      }
+    })
+  }
 })
 
 export interface State {

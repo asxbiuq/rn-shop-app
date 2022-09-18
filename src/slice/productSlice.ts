@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { PRODUCTS } from '../data/dummy-data'
 import { Product } from '../../types'
+import { deleteCartProduct } from './cartSlice';
 
 
 
@@ -21,6 +22,7 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     deleteProduct: (state, action: PayloadAction<Product>) => {
+      console.log('deleteProduct')
       return {
         ...state,
         userProducts: state.userProducts.filter(prod => prod.id !== action.payload.id),
@@ -28,6 +30,7 @@ export const productSlice = createSlice({
       }
     },
   },
+
 })
 export interface State {
   product: ProductState
