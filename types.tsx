@@ -15,7 +15,6 @@ export interface Product  {
   price: number
 }
 export interface CartItem  {
-  id: string
   quantity: number
   productPrice: number
   productTitle: string

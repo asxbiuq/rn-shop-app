@@ -55,27 +55,27 @@ export default () => {
   return (
     <FlatList
       data={products}
-      renderItem={({ item: { imageUrl, title, price, id } }) => (
+      renderItem={({ item }) => (
         <ProductItem
-          imageUrl={imageUrl}
-          title={title}
-          price={price}
+          imageUrl={item.imageUrl}
+          title={item.title}
+          price={item.price}
           onSelect={() => {
-            
+
           }}
         >
           <Button 
             color={Colors.primary}
             title={'查看详情'}
             onPress={() => {
-              selectItemHandler(id, title)
+              selectItemHandler(item.id, item.title)
             }}
           />
           <Button 
             color={Colors.primary}
             title={'查看详情'}
             onPress={() => {
-              dispatch(addToCart({ title, price }))
+              dispatch(addToCart(item))
             }}
           />
         </ProductItem>

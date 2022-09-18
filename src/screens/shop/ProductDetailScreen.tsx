@@ -1,12 +1,12 @@
 import { useRoute } from '@react-navigation/native'
 import { View, Text, Image, Button, StyleSheet } from 'react-native'
-import { RootStackParamList } from '../../navigation/StackNavigator'
 import type { RouteProp } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { availableProducts } from '../../slice/productSlice'
 import useHeaderTitle from '../../hooks/useHeaderTitle'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addToCart } from '../../slice/cartSlice'
+import { RootStackParamList } from '../../../types'
 
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -22,10 +22,13 @@ export default () => {
   const dispatch = useDispatch()
 
   useHeaderTitle(() => <Text>{productTitle}</Text>)
-
+   
+  if (!selectedProduct) {
+    return null
+  }
   return (
     <ScrollView>
-      <Image style={styles.image} source={{ uri: selectedProduct?.imageUrl }} />
+      <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />
       <View style={styles.action}>
         <Button
           title="加入购物车"

@@ -21,9 +21,9 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
+    deleteProduct: (state, action: PayloadAction<number>) => {
+
+    },
   },
 })
 
