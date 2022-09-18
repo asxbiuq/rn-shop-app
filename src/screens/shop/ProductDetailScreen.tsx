@@ -10,6 +10,7 @@ import { RootStackParamList } from '../../../types'
 import { AppDispatch } from '../../store'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import Colors from '../../constants/Colors'
 
 type ProductDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -24,7 +25,7 @@ export default () => {
   )
   const dispatch = useAppDispatch()
 
-  useHeaderTitle(() => <Text>{productTitle}</Text>)
+  useHeaderTitle(() => <Text style={{ color: Colors.title }}>{productTitle}</Text>)
 
   if (!selectedProduct) {
     return null

@@ -77,7 +77,7 @@ export default () => {
             style={styles.input}
             value={title}
             onChangeText={(text) => setTitle(text)}
-          ></TextInput>
+          ></TextInput>''4
         </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>商品图片地址</Text>

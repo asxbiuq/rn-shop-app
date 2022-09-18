@@ -11,6 +11,7 @@ import CartItem from '../../components/shop/CartItem'
 import { addOrder } from '../../slice/orderSlice'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import Card from '../../components/UI/Card'
 
 export default () => {
   const cartTotalAmount = useAppSelector(totalAmount)
@@ -29,7 +30,7 @@ export default () => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.summary}>
+      <Card style={styles.summary}>
         <Text style={styles.summaryText}>
           <Text>总和:</Text>
           <Text style={styles.amount}>¥{cartTotalAmount.toFixed(2)}</Text>
@@ -43,7 +44,7 @@ export default () => {
             dispatch(clearCart())
           }}
         />
-      </View>
+      </Card>
       <FlatList
         data={transformedCartItems}
         keyExtractor={(item) => item.productId}
@@ -72,13 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
     padding: 10,
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    borderColor: 'white',
   },
   summaryText: {
     width: '100%',

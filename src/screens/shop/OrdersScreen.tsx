@@ -9,22 +9,22 @@ import OrderItem from '../../components/shop/OrderItem'
 import dayjs from 'dayjs'
 import isLeapYear from 'dayjs/plugin/isLeapYear'
 import 'dayjs/locale/zh-cn'
-import { StackNavigationProp } from '../../../types'
 import { useAppSelector } from '../../hooks/useAppSelector'
+import Colors from '../../constants/Colors'
+import { ShopStackNavigationProp } from '../../../types'
 
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.locale('zh-cn') // 使用本地化语言
 
-type OrdersScreenNavigationProp = StackNavigationProp['navigation']
+type OrdersScreenNavigationProp = ShopStackNavigationProp['navigation']
 
 export default () => {
   const userOrders = useAppSelector(orders)
   const navigation = useNavigation<OrdersScreenNavigationProp>()
 
-  // useHeaderTitle(() => <Text>你的订单</Text>)
   useHeaderTitle(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center',alignItems: 'center' }}>
         <Item
           title="购物车"
           iconName={'menu'}
@@ -32,7 +32,7 @@ export default () => {
             navigation.dispatch(DrawerActions.toggleDrawer())
           }}
         />
-        <Text>你的订单</Text>
+        <Text style={{ color: Colors.title }}>你的订单</Text>
       </View>
     </HeaderButtons>
   ))

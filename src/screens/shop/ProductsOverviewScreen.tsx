@@ -10,14 +10,14 @@ import useHeaderRight from '../../hooks/useHeaderRight'
 import HeaderButton from '../../components/UI/HeaderButton'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { DrawerActions } from '@react-navigation/native'
-import { StackNavigationProp } from '../../../types'
+import { ShopStackNavigationProp } from '../../../types'
 import React from 'react'
 import Colors from '../../constants/Colors'
 import { AppDispatch } from '../../store'
 import { useAppSelector } from '../../hooks/useAppSelector'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 
-type ProductsOverviewScreenNavigationProp = StackNavigationProp['navigation']
+type ProductsOverviewScreenNavigationProp = ShopStackNavigationProp['navigation']
 
 export default () => {
   const products = useAppSelector(availableProducts)
@@ -33,7 +33,7 @@ export default () => {
 
   useHeaderTitle(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center',alignItems: 'center' }}>
         <Item
           title="购物车"
           iconName={'menu'}
@@ -41,7 +41,7 @@ export default () => {
             navigation.dispatch(DrawerActions.toggleDrawer())
           }}
         />
-        <Text>所有商品</Text>
+        <Text  style={{ color: Colors.title }}>所有商品</Text>
       </View>
     </HeaderButtons>
   ))

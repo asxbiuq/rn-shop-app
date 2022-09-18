@@ -31,7 +31,7 @@ export default () => {
   }
   useHeaderTitle(() => (
     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center',alignItems: 'center' }}>
         <Item
           title="菜单"
           iconName={'menu'}
@@ -39,7 +39,7 @@ export default () => {
             navigation.dispatch(DrawerActions.toggleDrawer())
           }}
         />
-        <Text>用户</Text>
+        <Text style={{ color: Colors.title }}>用户</Text>
       </View>
     </HeaderButtons>
   ))

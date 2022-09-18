@@ -6,6 +6,7 @@ import 'dayjs/locale/zh-cn' // 导入本地化语言
 import { useState } from 'react'
 import { CartItem as Cart, Order } from '../../../types'
 import CartItem from './CartItem'
+import Card from '../UI/Card'
 
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.locale('zh-cn') // 使用本地化语言
@@ -20,7 +21,7 @@ export default ({ amount, date, items }: Props) => {
   const [showDetails, setShowDetails] = useState(false)
 
   return (
-    <View style={styles.orderItem}>
+    <Card style={styles.orderItem}>
       <View style={styles.summary}>
         <Text style={styles.totalAmount}>¥{amount.toFixed(2)}</Text>
         <Text style={styles.date}>{dayjs(date).format('DD/MM/YYYY')}</Text>
@@ -45,19 +46,12 @@ export default ({ amount, date, items }: Props) => {
           ))}
         </View>
       )}
-    </View>
+    </Card>
   )
 }
 
 const styles = StyleSheet.create({
   orderItem: {
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 8,
-    backgroundColor: 'white',
     margin: 20,
     padding: 10,
     alignItems: 'center',
