@@ -1,11 +1,10 @@
+import { useDispatch } from 'react-redux';
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { PRODUCTS } from '../data/dummy-data'
 import { Product } from '../../types'
 
-export interface State {
-  product: ProductState
-}
+
 
 export interface ProductState {
   availableProducts: Product[]
@@ -21,17 +20,21 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    deleteProduct: (state, action: PayloadAction<number>) => {
-
+    deleteProduct: (state, action: PayloadAction<Product>) => {
+      return {
+        ...state,
+        userProducts: state.userProducts.filter(prod => prod.id !== action.payload.id),
+        availableProducts: state.availableProducts.filter(prod => prod.id !== action.payload.id),
+      }
     },
   },
 })
-
-export const availableProducts = (state: State) =>
-  state.product.availableProducts
-
+export interface State {
+  product: ProductState
+}
+export const availableProducts = (state: State) => state.product.availableProducts
 export const userProducts = (state: State) => state.product.userProducts
 // Action creators are generated for each case reducer function
-// export const { incrementByAmount } = productSlice.actions
+export const { deleteProduct } = productSlice.actions
 
 export const productReducer = productSlice.reducer

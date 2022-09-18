@@ -73,7 +73,7 @@ export default () => {
           />
           <Button 
             color={Colors.primary}
-            title={'查看详情'}
+            title={'加入购物车'}
             onPress={() => {
               dispatch(addToCart(item))
             }}

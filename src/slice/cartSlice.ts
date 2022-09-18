@@ -3,9 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { CARTITEM } from '../data/dummy-data'
 import { CartItem, Product } from '../../types'
 
-export interface State {
-  cart: CartState
-}
+
 
 export interface CartState {
   items: CartItem[]
@@ -106,13 +104,30 @@ export const cartSlice = createSlice({
     clearCart: () => {
       return initialState
     },
+    deleteCartProduct: (state, action: PayloadAction<Product>) => {
+      const updatedItems = state.items.filter(item => item.productTitle !== action.payload.title)
+      const deletedProd = state.items.find(item => item.productTitle === action.payload.title)
+
+      if (!deletedProd) {
+        return state
+      }
+      return {
+        ...state,
+        items: updatedItems,
+        totalAmount: state.totalAmount - deletedProd.sum,
+      }
+    }
   },
 })
+
+export interface State {
+  cart: CartState
+}
 
 export const totalAmount = (state: State) => state.cart.totalAmount
 export const items = (state: State) => state.cart.items
 
 // Action creators are generated for each case reducer function
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions
+export const { addToCart, removeFromCart, clearCart, deleteCartProduct } = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer
